@@ -1,0 +1,23 @@
+{
+  "name": "paulo/convertemoedas",
+  "description": "Converte dinheiro em reais para dollar ou euro ",
+  "authors": [
+    {
+      "name": "Paulo Henrique",
+      "role": "Desenvolvedor"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+   "App\\":"app",
+   "Source\\":"src"
+    },
+  "files": [
+  "Config/config.php"
+  ]
+  },
+  "require": {
+    "league/plates":"v4.0.0-alpha",
+    "coffeecode/router":"1.0.*"
+  }
+}

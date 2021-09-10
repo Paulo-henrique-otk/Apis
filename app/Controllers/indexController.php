@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 use League\Plates\Engine;
 use Source\Conversor;
@@ -6,8 +7,7 @@ use Source\Conversor;
 class indexController{
  private $view;
  private $router;
- function __construct($router)
- {
+ function __construct($router){
    $this->view = Engine::create(__DIR__ . "/../views","php");
    $this->router = $router;
    $this->view->addData(["router"=>$router]);
@@ -16,8 +16,9 @@ class indexController{
  echo $this->view->render("home");
  }
  public function calcularMoeda(array $data){
-     $pattern = "/^(\d+)(.)?(,)?(\d+?)?$/";
+     $pattern = "/^(\d+)(.?)(,?)(\d+?)$/";
      $conversor = new Conversor();
+     $conversor->getConexao();
      $valor = $data["valor"];
      $moeda = $data["operation"];
      if(preg_match($pattern, $valor,$matches)>0){

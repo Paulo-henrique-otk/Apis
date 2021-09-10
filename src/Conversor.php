@@ -1,10 +1,9 @@
 <?php
 namespace Source;
 class Conversor{
-private float $dolar;
-private float $euro;
-public function __construct()
-{
+private int|float $dolar;
+private int|float $euro;
+public function getConexao(){
   $curl = curl_init();
   curl_setopt_array($curl,[
   CURLOPT_URL => "https://api.hgbrasil.com/finance?key=2729234a",
@@ -15,16 +14,16 @@ public function __construct()
   $this->dolar = $repostaArray["results"]["currencies"]["USD"]["buy"];
   $this->euro = $repostaArray["results"]["currencies"]["EUR"]["buy"];
 }
-public function converterRealDolar(float $number):float{
+public function converterRealDolar(int|float $number):float|int|string{
   return number_format($number/$this->dolar,2);
 }
-public function converterRealEuro(float $number):float{
+public function converterRealEuro(int|float $number):float|int|string{
   return number_format($number/$this->euro,2);
 }
-public function converterDolarReal(float $number){
+public function converterDolarReal(int|float $number):float|int|string{
   return number_format($number * $this->dolar,2);
 }
-public function converterEuroReal(float $number){
+public function converterEuroReal(int|float $number):float|int|string{
   return number_format($number * $this->euro,2);
 }
 }

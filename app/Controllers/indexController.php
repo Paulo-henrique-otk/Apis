@@ -21,14 +21,14 @@ class indexController
  }
  public function calcularMoeda(array $data)
  {
-     $pattern = "/^(\d+)(.?)(,?)(\d+?)$/";
+     $pattern = "/^(\d+)(\.?|,?\W)(\d+)?$/";
      $conversor = new Conversor();
      $conversor->getConexao();
      $valor = $data["valor"];
      $moeda = $data["operation"];
      if(preg_match($pattern, $valor,$matches)>0){
       if(strpos($valor,",")!==false){
-      $valor = preg_replace($pattern,"$1.$4",$valor);
+      $valor = preg_replace($pattern,"$1.$3",$valor);
       }
           if ($moeda == "USD") {
               $_SESSION["resultado"] = $conversor->converterRealDolar(floatval($valor));
@@ -42,7 +42,7 @@ class indexController
             $_SESSION["resultado"] = $conversor->converterDolarReal(floatval($valor));
             $_SESSION["cifravalor"] = "USD$";
             $_SESSION["cifraresult"] = "R$";
-        }else if($moeda == "EUR2"){
+          }else if($moeda == "EUR2"){
           $_SESSION["resultado"] = $conversor->converterEuroReal(floatval($valor));
           $_SESSION["cifravalor"] = "EUR$";
           $_SESSION["cifraresult"] = "R$";

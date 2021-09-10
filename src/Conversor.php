@@ -29,7 +29,8 @@ public function converterDolarReal(int|float $number): float|int|string
 {
   return number_format($number * $this->dolar,2);
 }
-public function converterEuroReal(int|float $number):float|int|string{
+public function converterEuroReal(int|float $number):float|int|string
+{
   return number_format($number * $this->euro,2);
 }
 }

@@ -1,21 +1,26 @@
 <?php
 
 namespace App\Controllers;
+
 use League\Plates\Engine;
 use Source\Conversor;
 
-class indexController{
- private $view;
- private $router;
- function __construct($router){
+class indexController
+{
+ private  $view;
+ private  $router;
+ function __construct($router)
+ {
    $this->view = Engine::create(__DIR__ . "/../views","php");
    $this->router = $router;
    $this->view->addData(["router"=>$router]);
  } 
- public function home(){
+ public function home()
+ {
  echo $this->view->render("home");
  }
- public function calcularMoeda(array $data){
+ public function calcularMoeda(array $data)
+ {
      $pattern = "/^(\d+)(.?)(,?)(\d+?)$/";
      $conversor = new Conversor();
      $conversor->getConexao();
@@ -49,7 +54,8 @@ class indexController{
      }
    
  }
- public function result(){
+ public function result()
+ {
    if (isset($_SESSION["resultado"])) {
        echo $this->view->render("result",["valordigitado"=>$_SESSION["valordigitado"],
   "resultado"=>$_SESSION["resultado"],

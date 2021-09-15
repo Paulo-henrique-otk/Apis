@@ -47,7 +47,7 @@ class indexController
           $_SESSION["cifravalor"] = "EUR$";
           $_SESSION["cifraresult"] = "R$";
       }
-          $_SESSION["valordigitado"] = $valor;
+          $_SESSION["valordigitado"] = number_format($valor,2);
           $this->router->redirect("r.screen");  
      }else{
        $this->router->redirect("h.screen");
